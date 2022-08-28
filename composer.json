@@ -20,7 +20,8 @@
         }
     ],
     "require": {
-        "php": ">=7.4.0"
+        "php": ">=7.4.0",
+        "cr/hashcli": "dev-master"
     },
     "autoload-dev": {
         "psr-4": {
