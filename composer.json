@@ -1,10 +1,12 @@
 {
     "name": "luigu/gust-router",
     "description": "Fast request router for PHP",
+    "type": "library",
     "keywords": [
         "routing",
         "router"
     ],
+    "homepage": "https://github.com/grunst3r/simplerouter",
     "license": "BSD-3-Clause",
     "autoload": {
         "psr-4": {
@@ -14,7 +16,7 @@
     "authors": [
         {
             "name": "Luis Gustavo",
-            "email": "luigustavo@hotmail.es"
+            "email": "grunst3r@gmail.com"
         }
     ],
     "require": {
