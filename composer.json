@@ -23,6 +23,6 @@
         "php": ">=7.4.0",
         "cr/hashcli": "dev-master"
     },
-    "minimum-stability": "stable",
-    "prefer-stable": true
+    "minimum-stability" : "dev",
+    "prefer-stable" : true
 }
