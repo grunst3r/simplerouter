@@ -27,5 +27,7 @@
         "psr-4": {
             "Luigu\\GustRouter\\": "src/"
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
