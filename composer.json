@@ -1,5 +1,11 @@
 {
     "name": "luigu/gust-router",
+    "description": "Fast request router for PHP",
+    "keywords": [
+        "routing",
+        "router"
+    ],
+    "license": "BSD-3-Clause",
     "autoload": {
         "psr-4": {
             "Luigu\\GustRouter\\": "src/"
@@ -11,5 +17,7 @@
             "email": "luigustavo@hotmail.es"
         }
     ],
-    "require": {}
+    "require": {
+        "php": ">=7.4.0"
+    }
 }
