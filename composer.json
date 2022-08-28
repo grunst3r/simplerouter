@@ -13,6 +13,11 @@
             "Luigu\\GustRouter\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Luigu\\GustRouter\\": "src/"
+        }
+    },
     "authors": [
         {
             "name": "Luis Gustavo",
