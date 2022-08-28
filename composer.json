@@ -1,0 +1,15 @@
+{
+    "name": "luigu/gust-router",
+    "autoload": {
+        "psr-4": {
+            "Luigu\\GustRouter\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Luis Gustavo",
+            "email": "luigustavo@hotmail.es"
+        }
+    ],
+    "require": {}
+}
