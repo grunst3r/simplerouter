@@ -15,7 +15,7 @@ $router->name('home')->post('/buscador', function($post){
     return $post;
 });
 
-$router->name('blog')->get('/blog/{seo}', function($get){
+$router->name('blog')->get('/blog/{id}-{tema}', function($get){
     return '<p>:: <b> ---- '. $get['seo'].'</b></p>';
 });
 
@@ -39,6 +39,6 @@ $router->setError(function(){
     return "<h1>Nuevo error 404</h1>";
 });
 
-print_r($router->route('blog',['seo' => 'holaaa']));
-
+print_r($router->route('blog',['id' => 'holaaa','tema' => 'asdasdasd']));
+exit;
 $router->run();
