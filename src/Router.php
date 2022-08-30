@@ -135,9 +135,17 @@ class Router extends Request{
                 foreach($parametos as $k => $parameto){
                     $pattern = preg_replace('/{'.$k.'}/', $parameto, $pattern);
                 }
-                return !empty($pattern) ? $pattern : $ruta['path'];
+                return !empty($pattern) ? $this->https().$pattern : $this->https().$ruta['path'];
             }
         }
+    }
+
+    public function https(){
+        if (isset($_SERVER['HTTPS']) && !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off')
+            $scheme = 'https://';
+        else
+            $scheme = 'http://';
+        return $scheme;
     }
 
 }
