@@ -131,9 +131,9 @@ class Router extends Request{
         $rutas = $this->listRouters();
         foreach($rutas as $ruta){
             if($ruta['name'] == $nombre){
-                $pattern = '';
+                $pattern = $ruta['path'];
                 foreach($parametos as $k => $parameto){
-                    $pattern = preg_replace('/{'.$k.'}/', $parameto, $ruta['path']);
+                    $pattern = preg_replace('/{'.$k.'}/', $parameto, $pattern);
                 }
                 return !empty($pattern) ? $pattern : $ruta['path'];
             }
