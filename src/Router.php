@@ -116,4 +116,28 @@ class Router extends Request{
         return $r;
     }
 
+
+    public function listRouters(){
+        $lista = [];
+        foreach($this->routes as $rutas){
+            foreach($rutas as $ruta){
+                $lista[] = $ruta;
+            }
+        }
+        return $lista;
+    }
+
+    public function route($nombre, $parametos = []){
+        $rutas = $this->listRouters();
+        foreach($rutas as $ruta){
+            if($ruta['name'] == $nombre){
+                $pattern = '';
+                foreach($parametos as $k => $parameto){
+                    $pattern = preg_replace('/{'.$k.'}/', $parameto, $ruta['path']);
+                }
+                return !empty($pattern) ? $pattern : $ruta['path'];
+            }
+        }
+    }
+
 }

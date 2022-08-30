@@ -39,4 +39,6 @@ $router->setError(function(){
     return "<h1>Nuevo error 404</h1>";
 });
 
+print_r($router->route('blog',['seo' => 'holaaa']));
+
 $router->run();
