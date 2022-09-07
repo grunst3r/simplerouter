@@ -4,12 +4,6 @@ namespace Luigu\GustRouter;
 
 class Request {
     
-
-    public function __construct()
-    {
-        return "hola";
-    }
-
     public function getPath(){
         // server url
         $path = $_SERVER['REQUEST_URI'] ?? false;
@@ -52,7 +46,11 @@ class Request {
         }
         if ($this->isPost()) {
             foreach ($_POST as $key => $value) {
-                $data[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
+                if(is_array($value)){
+                    $data[$key] = filter_input(INPUT_POST, $key, FILTER_DEFAULT , FILTER_REQUIRE_ARRAY);
+                }else{
+                    $data[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
+                }
             }
         }
         $data = !$data ? json_decode(file_get_contents('php://input'), true) : $data;
