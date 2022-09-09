@@ -29,7 +29,9 @@ class Router extends Request{
 
     public function group($path, $fn){
         $this->grupo = $path;
-        return $fn();
+        $cont = $fn();
+        $this->grupo = '';
+        return $cont;
     }
 
     public function domain($path, $fn){
