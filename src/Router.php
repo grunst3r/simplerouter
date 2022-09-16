@@ -91,7 +91,7 @@ class Router extends Request{
 
 
     private function view($view){
-        if(is_array($view)){
+        if(is_array($view) || is_object($view) ){
             header('Content-type: application/json');
             echo json_encode($view);
         }else{
