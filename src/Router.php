@@ -16,6 +16,7 @@ class Router extends Request{
             "callback" => $callback,
             "name" => $this->name
         ];
+        $this->name = '';
     }
 
     public function getDomain(){
@@ -36,7 +37,9 @@ class Router extends Request{
 
     public function domain($path, $fn){
         $this->domain = $path;
-        return $fn();
+        $cont = $fn();
+        $this->domain = '';
+        return $cont;
     }
 
     public function get($path, $callback) {
