@@ -30,14 +30,14 @@ class Router extends Request{
 
     public function group($path, $fn){
         $this->grupo = $path;
-        $cont = $fn();
+        $cont = $fn;
         $this->grupo = '';
         return $cont;
     }
 
     public function domain($path, $fn){
         $this->domain = $path;
-        $cont = $fn();
+        $cont = $fn;
         $this->domain = '';
         return $cont;
     }
@@ -60,7 +60,11 @@ class Router extends Request{
         $uri = $this->getPath();
         $callback = false;
         $parametos = [];
-        foreach($this->routes[$this->getMethod()] as $route){
+        
+        
+        $meto = $this->getMethod();
+        
+        foreach($this->routes[$meto] as $route){
             if($this->patternMatches($route['path'], $uri)){
                 $callback = $route['callback'];
                 $preg = str_replace("/","\/",preg_replace('/{(.*?)}/', '(.*?)', $route['path']) );
@@ -72,11 +76,7 @@ class Router extends Request{
                 }
             }
         }
-
-        if($callback == false){
-            $this->notFound();
-        }
-
+        
         $params = $this->getBody();
         $params = array_merge($params, $parametos);
         if(is_array($callback)){
@@ -84,9 +84,13 @@ class Router extends Request{
             $controller->action = $callback[1];
             $view = $controller->{$callback[1]}($params);
         }else{
-            $view = call_user_func($callback, $params);
+            if(!empty($callback)){
+                $view = call_user_func($callback, $params);
+            }else{
+                return $this->notFound();
+            }
         }
-        $this->view($view);
+        return $this->view($view);
     }
 
 
@@ -100,17 +104,16 @@ class Router extends Request{
     }
 
     public function notFound(){
-        header("HTTP/1.0 404 Not Found");
-        if($this->error == null){
+        header("HTTP/1.0 401 Not Found");
+        if(empty($this->error)){
             echo "404 Not Found";
         }else{
-            echo $this->error;
+            echo call_user_func($this->error);
         }
-        exit;
     }
 
     public function setError($fn){
-        $this->error = $fn();
+        $this->error = $fn;
     }
 
 

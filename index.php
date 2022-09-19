@@ -4,6 +4,12 @@ include('vendor/autoload.php');
 use Luigu\GustRouter\Request;
 use Luigu\GustRouter\Router;
 
+
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Expose-Headers: Content-Length, X-JSON");
+header("Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS");
+header("Access-Control-Allow-Headers: *");
+
 $router = new Router;
 
 $router->name('home')->get('/', function() use($router){
@@ -31,13 +37,15 @@ $router->name('buscador')->post('/buscador', function($post){
     return $request->getBody();
 });
 
-$router->name('blog')->get('/blog/{id}-{slug}', function($get){
+$router->name('blog')->get('/blog', function($get){
+    return "hola mundo del blog <br/><br/>";
+});
+
+$router->name('blogf')->get('/blog/{id}-{slug}', function($get){
     return '<p>:: <b> ---- '. $get['seo'].'</b></p>';
 });
 
-$router->name('blog')->get('/blog', function($get){
-    return "hola mundo del blog <br/><br/>". $get['sub'];
-});
+
 
 
 
