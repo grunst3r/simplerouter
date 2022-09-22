@@ -41,13 +41,6 @@ $router->name('blog')->get('/blog', function($get){
     return "hola mundo del blog <br/><br/>";
 });
 
-$router->name('blogf')->get('/blog/{id}-{slug}', function($get){
-    return '<p>:: <b> ---- '. $get['seo'].'</b></p>';
-});
-
-
-
-
 
 $router->group('/admin', function() use($router){
     $router->name('admin')->get('/', function(){
@@ -58,10 +51,25 @@ $router->group('/admin', function() use($router){
     });
 });
 
+$router->name('blogfxD')->get('/blog/{id}-{slug}', function($get){
+    return '<p>:: <b> ---- '. $get['seo'].'</b></p>';
+});
+$router->name('blogfxD')->post('/blog/{id}-{slug}', function($get){
+    return '<p>:: <b> ---- '. $get['seo'].'</b></p>';
+});
+
+
+$router->get('/blog---------------------------------', function(){
+    return '<p>:: <b> ---- </b></p>';
+});
+
+
+
 
 $router->setError(function(){
     return "<h1>Nuevo error 404</h1>";
 });
-
-
+echo "<pre>";
+print_r($router);
+echo "</pre>";
 $router->run();
