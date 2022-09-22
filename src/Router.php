@@ -17,6 +17,7 @@ class Router extends Request{
             "name" => $this->name
         ];
         $this->name = '';
+        //$this->grupo = '';
     }
 
     public function getDomain(){
@@ -30,16 +31,14 @@ class Router extends Request{
 
     public function group($path, $fn){
         $this->grupo = $path;
-        $cont = $fn;
+        call_user_func($fn);
         $this->grupo = '';
-        return $cont;
     }
 
     public function domain($path, $fn){
         $this->domain = $path;
-        $cont = $fn;
+        call_user_func($fn);
         $this->domain = '';
-        return $cont;
     }
 
     public function get($path, $callback) {
