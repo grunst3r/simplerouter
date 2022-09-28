@@ -75,16 +75,18 @@ class Router extends Request{
                 }
             }
         }
-        
         $params = $this->getBody();
         $params = array_merge($params, $parametos);
         if(is_array($callback)){
             $controller = new $callback[0];
             $controller->action = $callback[1];
-            $view = $controller->{$callback[1]}($params);
+            $view = call_user_func_array([$controller,$controller->action], [$params]);
+            //$view = $controller->{$callback[1]}($params);
         }else{
             if(!empty($callback)){
-                $view = call_user_func($callback, $params);
+                //$parementos = $callback($this,$params);
+                $constructorArgs = func_get_args();
+                $view = call_user_func_array($callback, [$params]);
             }else{
                 return $this->notFound();
             }

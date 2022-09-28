@@ -13,7 +13,7 @@ header("Access-Control-Allow-Headers: *");
 $router = new Router;
 
 $router->name('home')->get('/', function() use($router){
-    $url = $router->route('buscador');
+    $url = $router->route('buscador',['slug' => 'enviar-contenido']);
     return '<form action="'.$url.'" method="post">
     <label for="fname">First name:</label><br>
     <input type="text" id="fname" name="fname"><br>
@@ -32,9 +32,8 @@ $router->name('home')->get('/', function() use($router){
 
 });
 
-$router->name('buscador')->post('/buscador', function($post){
-    $request = new Request;
-    return $request->getBody();
+$router->name('buscador')->post('/buscador/{slug}', function($slug){
+    return $slug;
 });
 
 $router->name('blog')->get('/blog', function($get){
@@ -69,7 +68,5 @@ $router->get('/blog---------------------------------', function(){
 $router->setError(function(){
     return "<h1>Nuevo error 404</h1>";
 });
-echo "<pre>";
-print_r($router);
-echo "</pre>";
+
 $router->run();

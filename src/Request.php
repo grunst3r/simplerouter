@@ -45,6 +45,16 @@ class Request {
             }
         }
         if ($this->isPost()) {
+            if(!empty($_GET)){
+                foreach ($_GET as $key => $value) {
+                    $data[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_SPECIAL_CHARS);
+                }
+            }
+            if(!empty($_FILES)){
+                foreach ($_FILES as $key => $value) {
+                    $data[$key] = $value;
+                }
+            }
             foreach ($_POST as $key => $value) {
                 if(is_array($value)){
                     $data[$key] = filter_input(INPUT_POST, $key, FILTER_DEFAULT , FILTER_REQUIRE_ARRAY);
@@ -54,6 +64,7 @@ class Request {
             }
         }
         $data = !$data ? json_decode(file_get_contents('php://input'), true) : $data;
+        $data['header'] = getallheaders();
         return !empty($data) ? $data: [];
     }
 
