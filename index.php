@@ -1,7 +1,6 @@
 <?php
 include('vendor/autoload.php');
 
-use Luigu\GustRouter\Request;
 use Luigu\GustRouter\Router;
 
 
@@ -45,7 +44,7 @@ $router->group('/admin', function() use($router){
     $router->name('admin')->get('/', function(){
         return "hola mundo mundo";
     });
-    $router->name('admin.blog')->get('/blogs', function(){
+    $router->name('admin.blog')->post('/blogs', function(){
         return "hola mundo mundo";
     });
 });
